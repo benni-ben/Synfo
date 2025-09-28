@@ -79,8 +79,11 @@
         }
         return hasFlash ? "enabled" : "unsupported or disabled";
     }
+    function filterScreenRes() {
+        return screen.width + "x" + screen.height;
+    }
     document.addEventListener("DOMContentLoaded", () => {
-        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + ".";
+        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreen() + ".";
     });
 </script>
 
