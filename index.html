@@ -85,8 +85,23 @@
     function filterTimeZone() {
         return Intl.DateTimeFormat().resolvedOptions().timeZone;
     }
+    function filterPlugins() {
+        return Array.from(navigator.plugins).map(plugin => plugin.name).join(", ");
+    }
+    function filterBrowserVersion() {
+        return navigator.appVersion.split(" ")[0];
+    }
+    function filterGeoLocation() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                return "Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude;
+            });
+        } else {
+            return "Geolocation is not supported by this browser, or is turned off in the settings.";
+        }
+    }
     document.addEventListener("DOMContentLoaded", () => {
-        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone();
+        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation();
     });
 </script>
 
