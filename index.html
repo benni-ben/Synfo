@@ -61,9 +61,14 @@
         if (userAgent.indexOf("Brave") != -1) browserName = "Brave";
         return browserName;
     }
+    function filterLanguage() {
+        return navigator.language || navigator.userLanguage;
+    }
+    function filterCookies() {
+        return navigator.cookieEnabled ? "enabled" : "disabled";
+    }
     document.addEventListener("DOMContentLoaded", () => {
-        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + ".";
-
+        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + ".";
     });
 </script>
 
