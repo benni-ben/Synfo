@@ -100,8 +100,32 @@
             return "Geolocation is not supported by this browser, or is turned off in the settings.";
         }
     }
+    function getPlatform() {
+        return navigator.platform;
+    }
+    //appCodeName and appName are both deprecated, and should not be used
+    function getDeviceMemory() {
+        return navigator.deviceMemory ? navigator.deviceMemory + " GB (" + (navigator.deviceMemory * 1024) + " MB)" : "Unknown";
+    }
+    function getHardwareConcurrency() {
+        return navigator.hardwareConcurrency ? navigator.hardwareConcurrency + " logical processors" : "Unknown";
+    }
+    function getTouchPointCount() {
+        let maxTouchPoints = 0;
+        if ('maxTouchPoints' in navigator) {
+            maxTouchPoints = navigator.maxTouchPoints;
+        }
+        return maxTouchPoints + " touch points";
+    }
+    function getTouchSupport() {
+        if (getTouchPointCount() > 0) {
+            return "Touch support detected.";
+        } else {
+            return "No touch support detected.";
+        }
+    }
     document.addEventListener("DOMContentLoaded", () => {
-        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation();
+        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + getPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport();
     });
 </script>
 
