@@ -135,8 +135,35 @@
             return "Network Information API is not supported by this browser.";
         }
     }
+    function getDoNotTrack() {
+        const dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+        if (dnt == "1" || dnt == "yes") {
+            return "Do Not Track is enabled.";
+        } else if (dnt == "0" || dnt == "no") {
+            return "Do Not Track is disabled.";
+        } else {
+            return "Do Not Track preference is not set.";
+        }
+    }
+    function getGPU() {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (gl) {
+            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+            if (debugInfo) {
+                const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                return `GPU Vendor: ${vendor}, Renderer: ${renderer}`;
+            } else {
+                return "WEBGL_debug_renderer_info not available.";
+            }
+        } else {
+            return "WebGL not supported.";
+        }
+    }
+    //wait for the DOM to load before executing
     document.addEventListener("DOMContentLoaded", () => {
-        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + getPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection();
+        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + getPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU();
     });
 </script>
 
