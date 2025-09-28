@@ -67,8 +67,20 @@
     function filterCookies() {
         return navigator.cookieEnabled ? "enabled" : "disabled";
     }
+    function filterJava() {
+        return navigator.javaEnabled() ? "enabled" : "disabled";
+    }
+    function filterFlash() {
+        hasFlash = false;
+        try {
+            hasFlash = Boolean(new ActiveXObject('ShockwaveFlash.ShockwaveFlash'));
+        } catch (exception) {
+            hasFlash = ('undefined' != typeof navigator.mimeTypes['application/x-shockwave-flash']);
+        }
+        return hasFlash ? "enabled" : "unsupported or disabled";
+    }
     document.addEventListener("DOMContentLoaded", () => {
-        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + ".";
+        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + ".";
     });
 </script>
 
