@@ -161,9 +161,25 @@
             return "WebGL not supported.";
         }
     }
+    function getBattery() {
+        if ('getBattery' in navigator) {
+            navigator.getBattery().then((battery) => {
+                return `${battery.level * 100}%, Charging: ${battery.charging}`;
+            });
+        } else {
+            return "Battery Status API is not supported by this browser.";
+        }
+    }
+    function getMediaCapabilities() {
+        if ('mediaCapabilities' in navigator) {
+            return `Media Capabilities API is supported. Decoding info: ${JSON.stringify(navigator.mediaCapabilities.decodingInfo)}, Encoding info: ${JSON.stringify(navigator.mediaCapabilities.encodingInfo)}, Configuration: ${JSON.stringify(navigator.mediaCapabilities.configuration)}`;
+        } else {
+            return "Media Capabilities API is not supported by this browser.";
+        }
+    }
     //wait for the DOM to load before executing
     document.addEventListener("DOMContentLoaded", () => {
-        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + getPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU();
+        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + getPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU() + "<br> Battery level is: " + getBattery() + "<br> " + getMediaCapabilities();
     });
 </script>
 
