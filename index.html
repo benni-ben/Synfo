@@ -177,9 +177,22 @@
             return "Media Capabilities API is not supported by this browser.";
         }
     }
+    function getMediaDevices() {
+        if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+            navigator.mediaDevices.enumerateDevices()
+                .then((devices) => {
+                    return devices.map(device => `${device.kind}: ${device.label} (ID: ${device.deviceId})`).join(", ");
+                })
+                .catch((err) => {
+                    return `Error enumerating devices: ${err}`;
+                });
+        } else {
+            return "Media Devices API is not supported by this browser.";
+        }
+    }
     //wait for the DOM to load before executing
     document.addEventListener("DOMContentLoaded", () => {
-        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + getPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU() + "<br> Battery level is: " + getBattery() + "<br> " + getMediaCapabilities();
+        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + filterCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + getPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU() + "<br> Battery level is: " + getBattery() + "<br> " + getMediaCapabilities() + "<br> " + getMediaDevices();
     });
 </script>
 
