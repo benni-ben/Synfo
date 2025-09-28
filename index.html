@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synfo</title>
+</head>
+
+<body>
+    <h1 id="header">Synfo</h1>
+    <div>
+        <p id="infobox"></p>
+    </div>
+</body>
+<script>
+    const infobox = document.getElementById("infobox");
+    function filterOS() {
+        var OSName = "Unknown";
+        const userAgent = window.navigator.userAgent;
+        if (userAgent.indexOf("Windows NT 10.0") != -1) OSName = "Windows 10";
+        if (userAgent.indexOf("Windows NT 6.3") != -1) OSName = "Windows 8.1";
+        if (userAgent.indexOf("Windows NT 6.2") != -1) OSName = "Windows 8";
+        if (userAgent.indexOf("Windows NT 6.1") != -1) OSName = "Windows 7";
+        if (userAgent.indexOf("Windows NT 6.0") != -1) OSName = "Windows Vista";
+        if (userAgent.indexOf("Windows NT 5.1") != -1) OSName = "Windows XP";
+        if (userAgent.indexOf("Windows NT 5.0") != -1) OSName = "Windows 2000";
+        if (userAgent.indexOf("Mac") != -1) OSName = "Mac/iOS";
+        if (userAgent.indexOf("X11") != -1) OSName = "UNIX";
+        if (userAgent.indexOf("Linux") != -1) OSName = "Linux";
+        if (userAgent.indexOf("Android") != -1) OSName = "Android";
+        if (userAgent.indexOf("Blackberry") != -1) OSName = "BlackberryOS";
+        if (userAgent.indexOf("WebOS") != -1) OSName = "WebOS";
+        if (userAgent.indexOf("CrOS") != -1) OSName = "ChromeOS";
+        if (userAgent.indexOf("Ubuntu") != -1) OSName = "Ubuntu";
+        if (userAgent.indexOf("iPod") != -1) OSName = "iPod";
+        if (userAgent.indexOf("iPad") != -1) OSName = "iPad";
+        if (userAgent.indexOf("iPhone") != -1) OSName = "iPhone";
+        if (userAgent.indexOf("Ubuntu") != -1) OSName = "Ubuntu";
+        if (userAgent.indexOf("iOS") != -1) OSName = "iOS";
+        if (userAgent.indexOf("Playstation") != -1) OSName = "Playstation";
+        if (userAgent.indexOf("Windows Phone") != -1) OSName = "Windows Phone";
+        if (userAgent.indexOf("Roku") != -1) OSName = "Roku TV";
+        if (userAgent.indexOf("Kindle") != -1) OSName = "Kindle";
+        if (userAgent.indexOf("hpwOS") != -1) OSName = "HP WebOS";
+        if (userAgent.indexOf("palm") != -1) OSName = "PalmOS";
+        return OSName;
+    }
+    function filterBrowser() {
+        var browserName = "Unknown";
+        const userAgent = window.navigator.userAgent;
+        if (userAgent.indexOf("Firefox") != -1) browserName = "Firefox";
+        if (userAgent.indexOf("SamsungBrowser") != -1) browserName = "Samsung Internet";
+        if (userAgent.indexOf("Opera") != -1 || userAgent.indexOf("OPR") != -1) browserName = "Opera";
+        if (userAgent.indexOf("Trident") != -1) browserName = "Internet Explorer";
+        if (userAgent.indexOf("Edge") != -1) browserName = "Edge";
+        if (userAgent.indexOf("Chrome") != -1) browserName = "Chrome";
+        if (userAgent.indexOf("Safari") != -1) browserName = "Safari";
+        if (userAgent.indexOf("UCBrowser") != -1) browserName = "UC Browser";
+        if (userAgent.indexOf("Vivaldi") != -1) browserName = "Vivaldi";
+        if (userAgent.indexOf("Brave") != -1) browserName = "Brave";
+        return browserName;
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + ".";
+
+    });
+</script>
+
+</html>
