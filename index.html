@@ -79,9 +79,6 @@
         }
         return hasFlash ? "enabled" : "unsupported or disabled";
     }
-    function filterScreenRes() {
-        return screen.width + "x" + screen.height;
-    }
     function filterTimeZone() {
         return Intl.DateTimeFormat().resolvedOptions().timeZone;
     }
@@ -229,8 +226,50 @@
     function getVendor() {
         return navigator.vendor ? navigator.vendor : "Unknown";
     }
+    function getVirtualKeyboard() {
+        if ('virtualKeyboard' in navigator) {
+            return `Virtual Keyboard API is supported. Bounding Rectangle: ${JSON.stringify(navigator.virtualKeyboard.boundingRect)}, Overlay: ${navigator.virtualKeyboard.overlaysContent}`;
+        } else {
+            return "Virtual Keyboard API is not supported.";
+        }
+    }
+    function getScreenLockStatus() {
+        if ('screen' in navigator && 'lockOrientation' in screen) {
+            return `Screen Orientation API is supported. Current orientation: ${screen.orientation.type}, Angle: ${screen.orientation.angle}`;
+        } else {
+            return "Screen Orientation API is not supported.";
+        }
+    }
+    function getWebDriver() {
+        return navigator.webdriver ? "WebDriver is being used." : "WebDriver is not being used.";
+    }
+    function displayWindowInfo() {
+        if (window.outerWidth && window.outerHeight) {
+            return `Window outer dimensions: ${window.outerWidth}x${window.outerHeight} <br> Inner dimensions: ${window.innerWidth}x${window.innerHeight} <br> Screen dimensions: ${screen.width}x${screen.height} <br> Available screen dimensions: ${screen.availWidth}x${screen.availHeight} <br> Window position: (${window.screenX}, ${window.screenY})`;
+        } else {
+            return "Window properties are not available.";
+        }
+    }
+    function webXRSupport() {
+        if (navigator.xr) {
+            return "WebXR is supported.";
+        } else {
+            return "WebXR is not supported.";
+        }
+    }
+    function getBattery() {
+        if (getBattery in navigator) {
+            return navigator.getBattery().then((battery) => {
+                return `${battery.level * 100}%, Charging: ${battery.charging}`;
+            });
+        } else {
+            return "Battery Status API is not supported by this browser(or you are not using a secure connection).";
+        }
+    }
     document.addEventListener("DOMContentLoaded", () => {
-        infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + getCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Screen resolution is " + filterScreenRes() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + returnPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU() + "<br> Battery level is: " + getBattery() + "<br> " + getMediaCapabilities() + "<br> " + getMediaDevices() + "<br> PDF Viewer is " + (isPDFViewEnabled() ? "enabled" : "disabled") + "." + "<br>Platform: " + returnPlatform() + "<br>Storage Info: " + getStorageInfo() + "<br>" + getCookies() + "<br>" + getUSB() + "<br>Browser Vendor: " + getVendor();
+        setInterval(() => {
+            infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + getCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + returnPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU() + "<br> Battery level is: " + getBattery() + "<br> " + getMediaCapabilities() + "<br> " + getMediaDevices() + "<br> PDF Viewer is " + (isPDFViewEnabled() ? "enabled" : "disabled") + "." + "<br>Platform: " + returnPlatform() + "<br>Storage Info: " + getStorageInfo() + "<br>" + getCookies() + "<br>" + getUSB() + "<br>Browser Vendor: " + getVendor() + "<br>" + getVirtualKeyboard() + "<br>" + getScreenLockStatus() + "<br>" + getWebDriver() + "<br>" + displayWindowInfo() + "<br>" + webXRSupport() + "<br>" + getBattery();
+        }, 50);
     });
 </script>
 
