@@ -292,9 +292,16 @@
             return "Vibration API is not supported.";
         }
     }
+    function heapInfo() {
+        if ('memory' in performance) {
+            return `JS Heap Size Limit: ${(performance.memory.jsHeapSizeLimit)/1024/1024}MB, Total JS Heap Size: ${Math.round((performance.memory.totalJSHeapSize)/1024/1024)}MB, Used JS Heap Size: ${Math.round((performance.memory.usedJSHeapSize)/1024/1024)}MB`;
+        } else {
+            return "Performance memory API is not supported.";
+        }
+    }
     document.addEventListener("DOMContentLoaded", () => {
         setInterval(() => {
-            infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + getCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + returnPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU() + "<br> Battery level is: " + getBattery() + "<br> " + getMediaCapabilities() + "<br> " + getMediaDevices() + "<br> PDF Viewer is " + (isPDFViewEnabled() ? "enabled" : "disabled") + "." + "<br>Platform: " + returnPlatform() + "<br>Storage Info: " + getStorageInfo() + "<br>" + getCookies() + "<br>" + getUSB() + "<br>Browser Vendor: " + getVendor() + "<br>" + getVirtualKeyboard() + "<br>" + getScreenLockStatus() + "<br>" + getWebDriver() + "<br>" + displayWindowInfo() + "<br>" + webXRSupport() + "<br>" + getBattery() + "<br>" + getGamepadsConnected() + "<br>" + getMediaPlaying() + "<br>" + canSetAppBadge() + "<br>" + canVibrate();
+            infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + getCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + returnPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU() + "<br> Battery level is: " + getBattery() + "<br> " + getMediaCapabilities() + "<br> " + getMediaDevices() + "<br> PDF Viewer is " + (isPDFViewEnabled() ? "enabled" : "disabled") + "." + "<br>Platform: " + returnPlatform() + "<br>Storage Info: " + getStorageInfo() + "<br>" + getCookies() + "<br>" + getUSB() + "<br>Browser Vendor: " + getVendor() + "<br>" + getVirtualKeyboard() + "<br>" + getScreenLockStatus() + "<br>" + getWebDriver() + "<br>" + displayWindowInfo() + "<br>" + webXRSupport() + "<br>" + getBattery() + "<br>" + getGamepadsConnected() + "<br>" + getMediaPlaying() + "<br>" + canSetAppBadge() + "<br>" + canVibrate() + "<br>" + heapInfo();
         }, 50);
     });
 </script>
