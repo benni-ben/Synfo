@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Synfo</title>
 </head>
-
 <body>
     <h1 id="header">Synfo</h1>
     <div>
@@ -107,16 +106,9 @@
     function getHardwareConcurrency() {
         return navigator.hardwareConcurrency ? navigator.hardwareConcurrency + " logical processors" : "Unknown";
     }
-    function getTouchPointCount() {
-        let maxTouchPoints = 0;
-        if ('maxTouchPoints' in navigator) {
-            maxTouchPoints = navigator.maxTouchPoints;
-        }
-        return maxTouchPoints + " touch points";
-    }
     function getTouchSupport() {
-        if (getTouchPointCount() > 0) {
-            return "Touch support detected.";
+        if (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) {
+            return "Touch support detected." + navigator.maxTouchPoints + " touch points available.";
         } else {
             return "No touch support detected.";
         }
@@ -266,7 +258,7 @@
             return "Battery Status API is not supported by this browser(or you are not using a secure connection).";
         }
     }
-function getGamepadsConnected() {
+    function getGamepadsConnected() {
         const gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads() : []);
         const connectedGamepads = Array.from(gamepads).filter(gp => gp);
         if (connectedGamepads.length > 0) {
@@ -291,7 +283,7 @@ function getGamepadsConnected() {
     }
     function canVibrate() {
         if ('vibrate' in navigator) {
-            return "Vibration API is suported.";
+            return "Vibration API is supported.";
             navigator.vibrate(200);
             setTimeout(() => {
                 navigator.vibrate(200);
