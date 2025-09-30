@@ -194,6 +194,7 @@
             if (debugInfo) {
                 const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
                 const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                canvas.remove();
                 return `GPU Vendor: ${vendor}, Renderer: ${renderer}`;
             } else {
                 return "WEBGL_debug_renderer_info not available.";
