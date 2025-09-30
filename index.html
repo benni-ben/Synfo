@@ -23,11 +23,31 @@
     }
     #header {
         text-align: center;
-        font-size: 3rem;
-        font-family: 'Fira Sans', Sans-serif;
         margin: 20px;
         color: rgb(125, 125, 125);
         animation: 3s cubic-bezier(0.67, 0.03, 0.2, 0.89) 0s infinite transition;
+grid-column: 3;
+    }
+    #topBar {
+    font-family: 'Fira Sans', Sans-serif;
+    font-size: 1.75rem;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 50px;
+    align-items: center;
+    justify-items: center;
+    margin: 20px;
+    }
+    button {
+        font-family: 'Fira Sans', Sans-serif;
+        font-size: 0.875rem;
+        padding: 8px;
+        background-color: rgb(77, 77, 77);
+        color: white;
+        border: black 2px solid;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        cursor: pointer;
     }
     @keyframes transition {
         0% {
@@ -50,7 +70,10 @@
 </style>
 
 <body>
-    <h1 id="header">Synfo</h1>
+    <div id="topBar">
+        <button>Download JSON Report</button>
+            <h1>Synfo</h1>
+        </div>
     <div>
         <p id="infobox"></p>
     </div>
