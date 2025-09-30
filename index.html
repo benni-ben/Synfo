@@ -27,24 +27,19 @@
         font-family: 'Fira Sans', Sans-serif;
         margin: 20px;
         color: rgb(125, 125, 125);
-        animation: transition, 2s, infinite;
-        animation-timing-function: cubic-bezier();
+        animation: 3s cubic-bezier(0.67, 0.03, 0.2, 0.89) 0s infinite transition;
     }
-
     @keyframes transition {
         0% {
-            color: rgb(125, 125, 125);
+            text-shadow: 0px 0px 20px rgb(0, 0, 0);
         }
-
-        63% {
-            background-position: 250% 0, -150% 0
+        50% {
+            text-shadow: 0px 7px 7px rgb(32, 65, 141);
         }
-
         100% {
-            background-position: 250% 0, 250% 0
+            text-shadow: 0px 0px 20px rgb(0, 0, 0);
         }
     }
-
     #infobox {
         padding: 20px;
         font-family: 'Roboto', Sans-serif;
@@ -356,6 +351,7 @@
             return "Performance memory API is not supported.";
         }
     }
+    
     document.addEventListener("DOMContentLoaded", () => {
         setInterval(() => {
             infobox.innerHTML = "You are using " + filterOS() + "<br> Your browser is " + filterBrowser() + "<br> Your region code is " + filterLanguage() + "<br> Cookies are " + getCookies() + "<br> Java is " + filterJava() + "<br> Flash is " + filterFlash() + "<br> Time zone is " + filterTimeZone() + "<br> Currently installed browser plugins are: " + filterPlugins() + "<br> Your browser version is: " + filterBrowserVersion() + "<br> Your location data is: " + filterGeoLocation() + "<br> Your platform is: " + returnPlatform() + "<br> Your device memory is: " + getDeviceMemory() + "<br> You have " + getHardwareConcurrency() + " available." + "<br> " + getTouchSupport() + "<br> " + getKeyboard() + "<br> " + getConnection() + "<br> " + getDoNotTrack() + "<br> " + getGPU() + "<br> Battery level is: " + getBattery() + "<br> " + getMediaCapabilities() + "<br> " + getMediaDevices() + "<br> PDF Viewer is " + (isPDFViewEnabled() ? "enabled" : "disabled") + "." + "<br>Platform: " + returnPlatform() + "<br>Storage Info: " + getStorageInfo() + "<br>" + getCookies() + "<br>" + getUSB() + "<br>Browser Vendor: " + getVendor() + "<br>" + getVirtualKeyboard() + "<br>" + getScreenLockStatus() + "<br>" + getWebDriver() + "<br>" + displayWindowInfo() + "<br>" + webXRSupport() + "<br>" + getBattery() + "<br>" + getGamepadsConnected() + "<br>" + getMediaPlaying() + "<br>" + canSetAppBadge() + "<br>" + canVibrate() + "<br>" + heapInfo();
